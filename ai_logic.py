@@ -1,30 +1,32 @@
 from gamelogic import *
 from sys import maxsize
+import random
 def minimize(root):
     if len(root.child) == 0:
         return None, root.value
     min = maxsize
-    min_move = None
+    min_move = []
     for node in root.child:
-        move, eval = maximize(node)
+        maximize(node)
         if node.value < min:
             min = node.value
             root.value = min
-            min_move = node
+            min_move = [node]
+        elif node.value == min:
+            min_move += [node]
     return min_move, min
-
-
 def maximize(root):
     max = maxsize * -1
-    max_move = None
+    max_move = []
     for node in root.child:
-        move, eval = minimize(node)
+        minimize(node)
         if node.value > max:
             max = node.value
             root.value = max
-            max_move = node
+            max_move = [node]
+        elif node.value == max:
+            max_move += [node]
     return max_move, max
-
 def eval_move(board, symb, move):
     value = 0
     symb_mult_x = 1
@@ -41,9 +43,9 @@ def eval_move(board, symb, move):
     value += num_two_in_row(board, 'X') * 5 * symb_mult_x
     value += num_two_in_row(board, 'O') * 5 * symb_mult_o
     return value
-
 def make_move(board):
-    node, eval = minimize(board)
+    node_list, eval = minimize(board)
+    node = random.choice(node_list)
     move = node.move
     board.data[move[0]][move[1]] = 'O'
 

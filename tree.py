@@ -26,19 +26,6 @@ def create_tree(board, symb, node):
             create_tree(copy_board, 'O', new_node)
         else:
             create_tree(copy_board, 'X', new_node)
-
-'''
-def update_values(root):
-    update_values_helper(root)
-
-def update_values_helper(root):
-    if root != None:
-        for node in root.child:
-            update_values_helper(node)
-            if node.value != None and root.value != None:
-                root.value += node.value
-
-'''
 def possible_moves(board):
     list_moves = []
     for row_index in range(len(board)):

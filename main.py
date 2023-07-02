@@ -22,21 +22,8 @@ def main():
         make_move(root)
         num_moves += 1
         has_winner = check_win(board, 'O')
-        #for node in root.child:
-            #print(node.value)
-            #print(node.move)
         if has_winner:
             display_board(board)
             print('Computer Wins!')
             break
-
-    '''
-    root = Node(board, None)
-    create_tree(board, 'X', root)
-    #update_values(root)
-    for board in root.child:
-        print(board.value)
-        print(board.move)
-    print(minimize(root))
-    '''
 main()
