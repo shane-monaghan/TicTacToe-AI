@@ -9,6 +9,7 @@ def minimize(root):
         move, eval = maximize(node)
         if node.value < min:
             min = node.value
+            root.value = min
             min_move = node
     return min_move, min
 
@@ -20,21 +21,25 @@ def maximize(root):
         move, eval = minimize(node)
         if node.value > max:
             max = node.value
+            root.value = max
             max_move = node
     return max_move, max
 
 def eval_move(board, symb, move):
     value = 0
-    if symb == 'X':
-        symb_multiplier = 1
-    if symb == 'O':
-        symb_multiplier = -1
-    if check_win(board, symb):
-        value += (50 * symb_multiplier)
-    if move == (0, 0) or move == (0,2) or move ==(2, 0) or move == (2, 2):
-    #if board[0][0] == symb or board[0][2] == symb or board[2][0] == symb or board[2][2] == symb:
-        value += (3 * symb_multiplier)
-    value += num_two_in_row(board, symb) * 5 * symb_multiplier
+    symb_mult_x = 1
+    symb_mult_o = -1
+    if check_win(board, 'X'):
+        value += (50 * symb_mult_x)
+    if check_win(board, 'O'):
+        value += (50 * symb_mult_o)
+    #if move == (0, 0) or move == (0,2) or move ==(2, 0) or move == (2, 2):
+    if board[0][0] == 'X' or board[0][2] == 'X' or board[2][0] == 'X' or board[2][2] == 'X':
+        value += (3 * symb_mult_x)
+    if board[0][0] == 'O' or board[0][2] == 'O' or board[2][0] == 'O' or board[2][2] == 'O':
+        value += (3 * symb_mult_o)
+    value += num_two_in_row(board, 'X') * 5 * symb_mult_x
+    value += num_two_in_row(board, 'O') * 5 * symb_mult_o
     return value
 
 def make_move(board):

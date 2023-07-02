@@ -14,6 +14,9 @@ def main():
             display_board(board)
             print('Player Wins!')
             break
+        if num_moves == 9:
+            print('Game Drawn!')
+            break
         root = Node(board, None)
         create_tree(board, 'O', root)
         make_move(root)
@@ -25,9 +28,6 @@ def main():
         if has_winner:
             display_board(board)
             print('Computer Wins!')
-            break
-        if num_moves == 9 and has_winner == False:
-            print('Game Drawn!')
             break
 
     '''
