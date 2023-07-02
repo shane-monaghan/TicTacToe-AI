@@ -14,9 +14,9 @@ def main():
             print('Player Wins!')
             break
     '''
-    root = Node(board)
+    root = Node(board, None)
     create_tree(board, 'O', root)
-    update_values(root)
-    for board in root.child:
+    #update_values(root)
+    for board in root.child[1].child[1].child[1].child[1].child:
         print(board.value)
 main()

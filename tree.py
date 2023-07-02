@@ -1,9 +1,10 @@
 import copy
 from ai_logic import *
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, move):
         self.data = data
         self.child = []
+        self.move = move
         self.value = None
 
     def add_child(self, node):
@@ -15,7 +16,7 @@ def create_tree(board, symb, node):
         copy_board = copy.deepcopy(board)
         copy_board[move[0]][move[1]] = symb
         value = eval_move(copy_board, symb, move)
-        new_node = Node(copy_board)
+        new_node = Node(copy_board, move)
         new_node.value = value
         node.add_child(new_node)
         if symb == 'X':
@@ -23,6 +24,7 @@ def create_tree(board, symb, node):
         else:
             create_tree(copy_board, 'X', new_node)
 
+'''
 def update_values(root):
     update_values_helper(root)
 
@@ -33,7 +35,7 @@ def update_values_helper(root):
             if node.value != None and root.value != None:
                 root.value += node.value
 
-
+'''
 def possible_moves(board):
     list_moves = []
     for row_index in range(len(board)):

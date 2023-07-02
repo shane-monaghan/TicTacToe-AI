@@ -1,10 +1,23 @@
 from gamelogic import *
 
-def minimize():
-    pass
+def minimize(root):
 
-def maximize():
-    pass
+    min = root.child[0].value
+    min_node = root.child[0]
+    for node in root.child:
+        if node.value < min:
+            min = node.value
+            min_node = node
+    maximize(min_node)
+
+def maximize(root):
+    max = root.child[0].value
+    max_node = root.child[0]
+    for node in root.child:
+        if node.value > max:
+            max = node.value
+            max_node = node
+    minimize(max_node)
 
 def eval_move(board, symb, move):
     value = 0
