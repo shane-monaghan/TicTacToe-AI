@@ -86,4 +86,18 @@ def num_two_in_row(board, symb):
         num_two += 1
     if (board[1][2] == symb and board[2][2] == symb):
         num_two += 1
+    #Diagonal One
+    if (board[0][0] == symb and board[1][1] == symb):
+        num_two += 1
+    if (board[0][0] == symb and board[2][2] == symb):
+        num_two += 1
+    if (board[1][1] == symb and board[2][2] == symb):
+        num_two += 1
+    #Diagonal Two
+    if (board[2][0] == symb and board[1][1] == symb):
+        num_two += 1
+    if (board[2][0] == symb and board[0][2] == symb):
+        num_two += 1
+    if (board[1][1] == symb and board[0][2] == symb):
+        num_two += 1
     return num_two

@@ -1,5 +1,6 @@
 import copy
 from ai_logic import *
+from gamelogic import check_win
 class Node:
     def __init__(self, data, move):
         self.data = data
@@ -19,7 +20,9 @@ def create_tree(board, symb, node):
         new_node = Node(copy_board, move)
         new_node.value = value
         node.add_child(new_node)
-        if symb == 'X':
+        if check_win(new_node.data, symb):
+            pass
+        elif symb == 'X':
             create_tree(copy_board, 'O', new_node)
         else:
             create_tree(copy_board, 'X', new_node)

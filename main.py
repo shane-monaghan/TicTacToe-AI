@@ -4,19 +4,39 @@ from ai_logic import *
 def main():
     board = [['' for i in range(3)] for i in range(3)]
     has_winner = False
-    '''
+    num_moves = 0
     while has_winner == False:
         display_board(board)
         player_move(board)
+        num_moves += 1
         has_winner = check_win(board, 'X')
         if has_winner:
             display_board(board)
             print('Player Wins!')
             break
+        root = Node(board, None)
+        create_tree(board, 'O', root)
+        make_move(root)
+        num_moves += 1
+        has_winner = check_win(board, 'O')
+        #for node in root.child:
+            #print(node.value)
+            #print(node.move)
+        if has_winner:
+            display_board(board)
+            print('Computer Wins!')
+            break
+        if num_moves == 9 and has_winner == False:
+            print('Game Drawn!')
+            break
+
     '''
     root = Node(board, None)
-    create_tree(board, 'O', root)
+    create_tree(board, 'X', root)
     #update_values(root)
-    for board in root.child[1].child[1].child[1].child[1].child:
+    for board in root.child:
         print(board.value)
+        print(board.move)
+    print(minimize(root))
+    '''
 main()
