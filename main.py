@@ -1,7 +1,12 @@
-from gamelogic import *
 from tree import *
 from ai_logic import *
+
+
 def main():
+    game_loop()
+
+
+def game_loop():
     board = [['' for i in range(3)] for i in range(3)]
     has_winner = False
     num_moves = 0
@@ -18,7 +23,7 @@ def main():
             print('Game Drawn!')
             break
         root = Node(board, None)
-        create_tree(board, 'O', root)
+        create_tree(board, root)
         make_move(root)
         num_moves += 1
         has_winner = check_win(board, 'O')
@@ -26,4 +31,6 @@ def main():
             display_board(board)
             print('Computer Wins!')
             break
+
+
 main()
