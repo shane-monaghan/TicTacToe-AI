@@ -34,8 +34,8 @@ def valid_move(board, row, col):
     :param col: int; represents the column of the move to be checked
     :return: True if the move can be played, False otherwise
     """
-    if not (row.isnumeric() and col.isnumeric()):
-        return False
+    #if not (row.isnumeric() and col.isnumeric()):
+        #return False
     row = int(row)
     col = int(col)
     valid_nums = [0, 1, 2]
