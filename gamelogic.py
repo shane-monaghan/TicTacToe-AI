@@ -9,22 +9,6 @@ def display_board(board):
         print(row)
 
 
-def player_move(board):
-    """
-    Gets player input in order to make a move, checks to see if it is a
-    valid move before doing so
-
-    :param board: 2D Array; represents the current state of the board
-    :return: None
-    """
-    while True:
-        row = input('Enter a row (0-2, from top to bottom)')
-        col = input('Enter a column (0-2, from left to right)')
-        if valid_move(board, row, col):
-            board[int(row)][int(col)] = 'X'
-            break
-
-
 def valid_move(board, row, col):
     """
     Determines whether a move can be played or not

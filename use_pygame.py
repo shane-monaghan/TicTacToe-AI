@@ -5,6 +5,12 @@ from ai_logic import *
 
 
 def game_with_graphics():
+    """
+    Contains everything related to setting up the game itself and Pygame.
+    It also contains the main game loop.
+
+    :return: None
+    """
     # Pygame Setup
     pygame.init()
     screen = pygame.display.set_mode((450, 450))
@@ -22,7 +28,13 @@ def game_with_graphics():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        while has_winner == False:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    board = [['' for i in range(3)] for i in range(3)]
+                    has_winner = False
+                    num_moves = 0
+                    result = None
+        while has_winner is False:
             draw_board(screen, board)
             pygame.display.update()
             get_click(board)
@@ -52,6 +64,13 @@ def game_with_graphics():
 
 
 def draw_board(screen, board):
+    """
+    Draws the board on the display.
+
+    :param screen: the display/surface to be drawn on
+    :param board: 2D Array; represents the current state of the board
+    :return:
+    """
     screen.fill('white')
     pygame.draw.line(screen, 'black', (150, 0), (150, 450))
     pygame.draw.line(screen, 'black', (300, 0), (300, 450))
@@ -87,9 +106,21 @@ def draw_board(screen, board):
 
 
 def print_result(screen, board, result):
+    """
+    After the game, this displays what the result was on the screen.
+
+    :param screen: the display/surface to be drawn on
+    :param board: 2D Array; represents the board
+    :param result: String; should be one of 'Player', 'Computer', or 'Draw'
+    :return:
+    """
     surface = pygame.Surface((450, 450), pygame.SRCALPHA)
     surface.fill((0, 0, 0, 128))
     font = pygame.font.Font('freesansbold.ttf', 54)
+    sub_font = pygame.font.Font('freesansbold.ttf', 26)
+    sub_text = sub_font.render('Press R to Restart', True, 'white', 'black')
+    sub_rect = sub_text.get_rect()
+    sub_rect.center = (225, 275)
     draw_board(screen, board)
     if result == 'Player':
         player_victory_text = font.render('Player Wins!', True, 'red', 'white')
@@ -106,11 +137,19 @@ def print_result(screen, board, result):
         draw_rect = draw_text.get_rect()
         draw_rect.center = (225, 225)
         surface.blit(draw_text, draw_rect)
+    surface.blit(sub_text, sub_rect)
     screen.blit(surface, (0, 0))
     pygame.display.update()
 
 
 def get_click(board):
+    """
+    This function makes a move for the user, if it is valid, by using the mouse to
+    get input (wherever the user clicks).
+
+    :param board: 2D Array; represents the board
+    :return: None
+    """
     pos = None
     while pos is None:
         for event in pygame.event.get():
