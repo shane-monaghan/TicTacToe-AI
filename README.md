@@ -3,6 +3,9 @@ This project contains the files for a Tic-Tac-Toe game I made that allows the us
 I completed this project for fun in my free time as a way for me to learn something new by applying my skills 
 in a way that I had not done previously and for me to take a first step of sorts into the realm of AI.
 
+![tictactoe_screenshot](https://github.com/shane-monaghan/TicTacToe-AI/assets/135287482/99de8bd8-e0f8-4d17-aafe-6693bcb6459e)
+![tictactoe_end_screenshot](https://github.com/shane-monaghan/TicTacToe-AI/assets/135287482/c641c406-d058-4910-897a-48d757537091)
+
 ## How It's Made:
 
 **Tech used:** Python, Pygame
